@@ -40,3 +40,4 @@ jobs:
     docker:
       needs: [routage]
       uses: ./.github/workflows/docker.js.yml
+      secrets: inherit
