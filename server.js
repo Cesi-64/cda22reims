@@ -25,7 +25,7 @@ const marcel_router = require('./routers/marcel')
 /****************************/
 /*** Main router parameters */
 
-app.get('/', (req, res) => res.send(`I'm online. All is OK !`))
+app.get('/', (req, res) => res.send(`I'm online. All is OK !.....................`))
 
 app.use('/auth', auth_router)
 app.use('/marcel', marcel_router)
