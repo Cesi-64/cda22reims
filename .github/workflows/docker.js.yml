@@ -49,4 +49,4 @@ jobs:
                 username: ${{ secrets.LOGIN }}
                 password: ${{ secrets.PWD }}
 
-                script: bash update.sh
+                script: bash update.sh latest
