@@ -34,3 +34,18 @@ jobs:
                 push: true
                 tags: ${{ steps.meta.outputs.tags }}
                 labels: ${{ steps.meta.outputs.labels }}
+
+    pull:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Server Update
+              uses: appleboy/ssh-action@master
+              with:
+                host: ${{ secrets.HOST }}
+                port: ${{ secrets.PORT }}
+
+                username: ${{ secrets.LOGIN }}
+                password: ${{ secrets.PWD }}
+
+                script: bash update.sh
