@@ -22,3 +22,7 @@ jobs:
               run: npm i
             - name: Run API
               run: pm2 restart pm2.config.js
+              #run: |
+                #docker pull arocode/cda22reims:main
+                #docker rm -f marcel
+                #docker run -d -p 9000:9000 --name marcel arocode/cda22reims:main
