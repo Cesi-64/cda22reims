@@ -22,7 +22,7 @@ jobs:
             - name: Chekout
               uses: actions/checkout@v3
 
-            - name: Registry login [${{ env.REGISTRY }}]
+            - name: Registry login ${{ env.REGISTRY }}
               if: github.event_name != 'pull_request'
               uses: docker/login-action@28218f9b04b4f3f62068d7b6ce6ca5b26e35336c
               with:
@@ -38,7 +38,7 @@ jobs:
               with:
                 images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
                 tags: |
-                  type=raw,value=latest,enable=${{ endsWith(GitHub.ref, 'master') }}
+                  type=raw,value=latest,enable=${{ endsWith(GitHub.ref, 'main') }}
                 flavor: |
                   latest=true
 
@@ -51,5 +51,4 @@ jobs:
                 push: ${{ github.event_name != 'pull_request' }}
                 tags: ${{ steps.meta.outputs.tags }}
                 labels: ${{ steps.meta.outputs.labels }}
-                
                 
