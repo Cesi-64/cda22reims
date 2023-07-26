@@ -57,15 +57,26 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - name: Copy compose file on server
-              uses: garygrossgarten/github-action-scp@release
+            # - name: Copy compose file on server
+            #   uses: garygrossgarten/github-action-scp@release
+            #   with:
+            #     local: ./docker-compose.yml
+            #     remote: ./docker-compose.yml
+
+            #     host: ${{ secrets.HOST }}
+            #     port: ${{ secrets.PORT }}
+
+            #     username: ${{ secrets.LOGIN }}
+            #     password: ${{ secrets.PWD }}
+            - name: Checkout 
+              uses: actions/checkout@v3
+            - name: copy file via ssh password
+              uses: appleboy/scp-action@v0.1.4
               with:
-                local: ./docker-compose.yml
-                remote: ./docker-compose.yml
-
                 host: ${{ secrets.HOST }}
-                port: ${{ secrets.PORT }}
-
                 username: ${{ secrets.LOGIN }}
                 password: ${{ secrets.PWD }}
+                port: ${{ secrets.PORT }}
+                source: "./docker-compose.yml"
+                target: "."
                 
