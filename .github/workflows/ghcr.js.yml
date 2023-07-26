@@ -84,6 +84,7 @@ jobs:
                 password: ${{ secrets.PWD }}
 
                 script: |
+                  echo ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
                   echo ${{ secrets.ACTIONS_PAT }} | docker login ghcr.io -u floriansp40 --password-stdin
                   docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
                   docker-compose up -d
