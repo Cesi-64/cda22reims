@@ -77,7 +77,8 @@ jobs:
             - name: string
               uses: ASzc/change-string-case-action@v5
               with:
-                string: ${{ env.IMAGE_NAME }}
+                #string: ${{ env.IMAGE_NAME }}
+                string: Floriansp40/cda22reims
             - name: Docker Compose Up
               uses: appleboy/ssh-action@master
               with:
