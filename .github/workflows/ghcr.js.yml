@@ -85,6 +85,10 @@ jobs:
 
                 script: |
                   echo ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+                  echo test de base
+                  echo ${{ github.sha }}
+                  echo "REPO=${IMAGE_NAME,,}" >>${GITHUB_ENV}
+                  echo $REPO
                   echo ${{ secrets.ACTIONS_PAT }} | docker login ghcr.io -u floriansp40 --password-stdin
                   docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
                   docker-compose up -d
