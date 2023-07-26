@@ -2,6 +2,6 @@ version: '3.9'
 
 services:
   api:
-    images: ghcr.io/floriansp40/cda22reims:latest
+    image: ghcr.io/floriansp40/cda22reims:latest
     ports:
       - 9000:9000
