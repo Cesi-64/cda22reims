@@ -74,11 +74,10 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - name: string
+            - id: string
               uses: ASzc/change-string-case-action@v5
               with:
-                #string: ${{ env.IMAGE_NAME }}
-                string: Floriansp40/cda22reims
+                string: ${{ env.IMAGE_NAME }}
             - name: Docker Compose Up
               uses: appleboy/ssh-action@master
               with:
