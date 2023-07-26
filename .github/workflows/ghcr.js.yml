@@ -57,17 +57,6 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            # - name: Copy compose file on server
-            #   uses: garygrossgarten/github-action-scp@release
-            #   with:
-            #     local: ./docker-compose.yml
-            #     remote: ./docker-compose.yml
-
-            #     host: ${{ secrets.HOST }}
-            #     port: ${{ secrets.PORT }}
-
-            #     username: ${{ secrets.LOGIN }}
-            #     password: ${{ secrets.PWD }}
             - name: Checkout 
               uses: actions/checkout@v3
             - name: copy file via ssh password
@@ -80,3 +69,21 @@ jobs:
                 source: "./docker-compose.yml"
                 target: "."
                 
+    deploy:
+        needs: compose
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Docker Compose Up
+              uses: appleboy/ssh-action@master
+              with:
+                host: ${{ secrets.HOST }}
+                port: ${{ secrets.PORT }}
+
+                username: ${{ secrets.LOGIN }}
+                password: ${{ secrets.PWD }}
+
+                script: |
+                  echo ${{ secrets.ACTIONS_PAT }} | docker login ghcr.io -u floriansp40 --password-stdin
+                  docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+                  docker-compose up -d
