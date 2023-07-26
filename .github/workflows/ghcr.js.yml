@@ -51,4 +51,21 @@ jobs:
                 push: ${{ github.event_name != 'pull_request' }}
                 tags: ${{ steps.meta.outputs.tags }}
                 labels: ${{ steps.meta.outputs.labels }}
+
+    compose:
+        needs: [build]
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Copy compose file on server
+              uses: garygrossgarten/github-action-scp@release
+              with:
+                local: ./docker-compose.yml
+                remote: ./docker-compose.yml
+
+                host: ${{ secrets.HOST }}
+                port: ${{ secrets.PORT }}
+
+                username: ${{ secrets.LOGIN }}
+                password: ${{ secrets.PWD }}
                 
