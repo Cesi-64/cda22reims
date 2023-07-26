@@ -64,7 +64,8 @@ jobs:
               with:
                 host: ${{ secrets.HOST }}
                 username: ${{ secrets.LOGIN }}
-                password: ${{ secrets.PWD }}
+                #password: ${{ secrets.PWD }}
+                key: ${{ secrets.PRIVATE_KEY }}
                 port: ${{ secrets.PORT }}
                 source: "./docker-compose.yml"
                 target: "."
@@ -85,7 +86,8 @@ jobs:
                 port: ${{ secrets.PORT }}
 
                 username: ${{ secrets.LOGIN }}
-                password: ${{ secrets.PWD }}
+                #password: ${{ secrets.PWD }}
+                key: ${{ secrets.PRIVATE_KEY }}
 
                 script: |
                   echo ${{ secrets.ACTIONS_PAT }} | docker login ghcr.io -u floriansp40 --password-stdin
